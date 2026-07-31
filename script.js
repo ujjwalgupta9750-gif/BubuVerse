@@ -318,3 +318,205 @@ console.log("%cWelcome Bubu ❤️",
 
 console.log("%cMade with love by Pgl / Buddhu ❤️",
 "font-size:18px;color:cyan;");
+
+/* ========= PART 3 : ADD THIS AT THE END OF script.js ========= */
+
+const memoryData = [
+{
+title:"🌸 A Beginning",
+text:"Every beautiful friendship starts with a simple conversation. Sometimes destiny hides inside ordinary moments."
+},
+{
+title:"✨ Smile",
+text:"If this website makes you smile even once, then its purpose is fulfilled."
+},
+{
+title:"💖 Precious",
+text:"You are appreciated, respected and valued. Never forget that."
+},
+{
+title:"🌙 Night Sky",
+text:"Whenever you see stars, remember someone wished happiness for you."
+},
+{
+title:"🦋 Friendship",
+text:"Distance never decides friendship. Hearts do."
+},
+{
+title:"🌈 Dreams",
+text:"May every dream of yours slowly become reality."
+}
+];
+
+const memoryBook=document.createElement("section");
+memoryBook.id="memoryBook";
+
+memoryData.forEach(item=>{
+
+const card=document.createElement("div");
+
+card.className="memoryCard floating";
+
+card.innerHTML=`
+
+<h3>${item.title}</h3>
+
+<p>${item.text}</p>
+
+`;
+
+memoryBook.appendChild(card);
+
+});
+
+mainContent.appendChild(memoryBook);
+
+const counter=document.createElement("section");
+
+counter.id="counter";
+
+counter.innerHTML=`
+
+<div class="counterBox">
+
+<div class="counter" id="c1">0</div>
+
+<div class="counterTitle">Smiles</div>
+
+</div>
+
+<div class="counterBox">
+
+<div class="counter" id="c2">0</div>
+
+<div class="counterTitle">Stars</div>
+
+</div>
+
+<div class="counterBox">
+
+<div class="counter" id="c3">0</div>
+
+<div class="counterTitle">Friendship</div>
+
+</div>
+
+`;
+
+mainContent.appendChild(counter);
+
+function animateCounter(id,target){
+
+let n=0;
+
+const el=document.getElementById(id);
+
+const timer=setInterval(()=>{
+
+n++;
+
+el.textContent=n;
+
+if(n>=target){
+
+clearInterval(timer);
+
+}
+
+},25);
+
+}
+
+startButton.addEventListener("click",()=>{
+
+setTimeout(()=>{
+
+animateCounter("c1",100);
+
+animateCounter("c2",999);
+
+animateCounter("c3",100);
+
+},800);
+
+});
+
+const final=document.createElement("section");
+
+final.id="finalMessage";
+
+final.innerHTML=`
+
+<h2>
+
+Thank You Bubu ❤️
+
+</h2>
+
+<p>
+
+No matter how many stars exist in the sky...
+
+some people still shine brighter.
+
+Thank you for being a wonderful friend.
+
+Never stop smiling.
+
+</p>
+
+<br>
+
+<div class="endHeart">💖</div>
+
+`;
+
+mainContent.appendChild(final);
+
+let konami=[];
+
+const secret=[
+"ArrowUp",
+"ArrowUp",
+"ArrowDown",
+"ArrowDown",
+"ArrowLeft",
+"ArrowRight",
+"ArrowLeft",
+"ArrowRight"
+];
+
+window.addEventListener("keydown",(e)=>{
+
+konami.push(e.key);
+
+if(konami.length>secret.length){
+
+konami.shift();
+
+}
+
+if(konami.join()==secret.join()){
+
+document.body.style.background=
+"linear-gradient(135deg,#ff5ea8,#7b68ee,#111827)";
+
+rainEmoji("💖",150);
+
+rainEmoji("✨",120);
+
+addMessage("🎉 SECRET MODE UNLOCKED!");
+
+}
+
+});
+
+setInterval(()=>{
+
+if(Math.random()<0.35){
+
+addMessage(quotes[Math.floor(Math.random()*quotes.length)]);
+
+}
+
+},10000);
