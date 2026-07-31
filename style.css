@@ -339,3 +339,170 @@ font-size:18px;
 }
 
 }
+/* ========= PART 2 : ADD THIS AT THE END OF style.css ========= */
+
+.glow{
+animation:glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow{
+
+from{
+
+text-shadow:
+0 0 10px #fff,
+0 0 20px #ff66c4,
+0 0 30px #ff66c4;
+
+}
+
+to{
+
+text-shadow:
+0 0 20px #fff,
+0 0 40px #ff66c4,
+0 0 70px #ff66c4;
+
+}
+
+}
+
+.sparkle{
+
+position:fixed;
+
+width:4px;
+
+height:4px;
+
+border-radius:50%;
+
+background:white;
+
+pointer-events:none;
+
+animation:sparkle 2s linear forwards;
+
+}
+
+@keyframes sparkle{
+
+0%{
+
+transform:translateY(0) scale(1);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-120px) scale(0);
+
+opacity:0;
+
+}
+
+}
+
+.floating{
+
+animation:floating 6s ease-in-out infinite;
+
+}
+
+@keyframes floating{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+}
+
+.magic{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.magic::before{
+
+content:"";
+
+position:absolute;
+
+left:-100%;
+
+top:0;
+
+width:100%;
+
+height:100%;
+
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.6),
+transparent
+);
+
+transition:1s;
+
+}
+
+.magic:hover::before{
+
+left:120%;
+
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+background:
+radial-gradient(circle at 20% 20%,rgba(255,255,255,.04),transparent 35%),
+radial-gradient(circle at 80% 30%,rgba(255,100,180,.06),transparent 35%),
+radial-gradient(circle at 50% 80%,rgba(100,150,255,.05),transparent 35%);
+
+animation:bgMove 18s linear infinite;
+
+}
+
+@keyframes bgMove{
+
+0%{
+
+transform:translateX(0);
+
+}
+
+50%{
+
+transform:translateX(40px);
+
+}
+
+100%{
+
+transform:translateX(0);
+
+}
+
+}
