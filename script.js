@@ -800,3 +800,256 @@ document
 startHeartGame.onclick=startGame;
 
 }
+/* ===========================
+   BUBBLE POP GAME ENGINE
+   Paste at END of script.js
+=========================== */
+
+const bubbleOpenBtn=document.getElementById("bubbleOpenBtn");
+const bubbleGame=document.getElementById("bubbleGame");
+const bubbleArea=document.getElementById("bubbleArea");
+const bubbleStartBtn=document.getElementById("bubbleStartBtn");
+const bubbleScore=document.getElementById("bubbleScore");
+const bubbleTime=document.getElementById("bubbleTime");
+
+if(
+bubbleOpenBtn &&
+bubbleGame &&
+bubbleArea &&
+bubbleStartBtn &&
+bubbleScore &&
+bubbleTime
+){
+
+bubbleOpenBtn.onclick=()=>{
+
+bubbleGame.style.display="block";
+
+bubbleGame.scrollIntoView({
+behavior:"smooth"
+});
+
+};
+
+let bubbleRunning=false;
+let bubblePoints=0;
+let bubbleSeconds=30;
+let bubbleSpawn=null;
+let bubbleClock=null;
+
+function randomBubble(min,max){
+
+return Math.floor(Math.random()*(max-min))+min;
+
+}
+
+const bubbleEmoji=[
+
+"🫧",
+"💙",
+"💜",
+"💚",
+"💛",
+"💖",
+"✨"
+
+];
+
+function createBubble(){
+
+if(!bubbleRunning)return;
+
+const b=document.createElement("div");
+
+b.className="bubble";
+
+b.innerHTML=bubbleEmoji[randomBubble(0,bubbleEmoji.length)];
+
+const size=randomBubble(55,95);
+
+b.style.width=size+"px";
+b.style.height=size+"px";
+b.style.fontSize=(size/2)+"px";
+
+b.style.left=randomBubble(
+10,
+bubbleArea.clientWidth-size-10
+)+"px";
+
+b.style.top=randomBubble(
+10,
+bubbleArea.clientHeight-size-10
+)+"px";
+
+bubbleArea.appendChild(b);
+
+let removed=false;
+
+function removeBubble(){
+
+if(removed)return;
+
+removed=true;
+
+b.remove();
+
+}
+
+const disappear=setTimeout(removeBubble,1800);
+
+b.onclick=()=>{
+
+if(!bubbleRunning)return;
+
+clearTimeout(disappear);
+
+bubblePoints++;
+
+bubbleScore.innerHTML=bubblePoints;
+
+b.classList.add("pop");
+
+for(let i=0;i<12;i++){
+
+const spark=document.createElement("div");
+
+spark.innerHTML="✨";
+
+spark.style.position="absolute";
+
+spark.style.left=b.style.left;
+
+spark.style.top=b.style.top;
+
+spark.style.pointerEvents="none";
+
+spark.style.transition=".8s";
+
+spark.style.fontSize=randomBubble(12,22)+"px";
+
+bubbleArea.appendChild(spark);
+
+setTimeout(()=>{
+
+spark.style.transform=
+`translate(${randomBubble(-120,120)}px,${randomBubble(-120,120)}px) scale(0)`;
+
+spark.style.opacity="0";
+
+},20);
+
+setTimeout(()=>spark.remove(),900);
+
+}
+
+setTimeout(removeBubble,180);
+
+};
+
+}
+
+function finishBubbleGame(){
+
+bubbleRunning=false;
+
+clearInterval(bubbleSpawn);
+
+clearInterval(bubbleClock);
+
+bubbleArea.innerHTML="";
+
+let rank="😊";
+
+if(bubblePoints>=70){
+
+rank="👑";
+
+}else if(bubblePoints>=55){
+
+rank="🏆";
+
+}else if(bubblePoints>=40){
+
+rank="🥇";
+
+}else if(bubblePoints>=25){
+
+rank="🥈";
+
+}else if(bubblePoints>=10){
+
+rank="🥉";
+
+}
+
+bubbleArea.innerHTML=`
+
+<div style="padding:35px;text-align:center;">
+
+<h1>${rank}</h1>
+
+<h2>Game Over</h2>
+
+<br>
+
+<h2>Your Score : ${bubblePoints}</h2>
+
+<br>
+
+<button
+class="magic"
+id="bubbleReplay">
+
+Play Again
+
+</button>
+
+</div>
+
+`;
+
+document
+.getElementById("bubbleReplay")
+.onclick=startBubbleGame;
+
+}
+
+function startBubbleGame(){
+
+if(bubbleRunning)return;
+
+bubbleRunning=true;
+
+bubblePoints=0;
+bubbleSeconds=30;
+
+bubbleScore.innerHTML=0;
+bubbleTime.innerHTML=30;
+
+bubbleArea.innerHTML="";
+
+bubbleSpawn=setInterval(()=>{
+
+createBubble();
+
+},350);
+
+bubbleClock=setInterval(()=>{
+
+bubbleSeconds--;
+
+bubbleTime.innerHTML=bubbleSeconds;
+
+if(bubbleSeconds<=0){
+
+finishBubbleGame();
+
+}
+
+},1000);
+
+}
+
+bubbleStartBtn.onclick=startBubbleGame;
+
+}
