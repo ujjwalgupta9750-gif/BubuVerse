@@ -550,3 +550,253 @@ window.addEventListener("load", () => {
     }
 
 });
+/* ========= HEART GAME ENGINE ========= */
+/* Paste this at the END of script.js */
+
+const heartGameBtn=document.getElementById("heartGameBtn");
+const heartGame=document.getElementById("heartGame");
+const heartArea=document.getElementById("heartArea");
+const startHeartGame=document.getElementById("startHeartGame");
+const heartScore=document.getElementById("heartScore");
+const heartTime=document.getElementById("heartTime");
+
+if(
+heartGameBtn &&
+heartGame &&
+heartArea &&
+startHeartGame &&
+heartScore &&
+heartTime
+){
+
+heartGameBtn.onclick=()=>{
+
+heartGame.style.display="block";
+
+heartGame.scrollIntoView({
+behavior:"smooth"
+});
+
+};
+
+let gameRunning=false;
+let score=0;
+let timeLeft=30;
+let spawnInterval=null;
+let timerInterval=null;
+
+function random(min,max){
+
+return Math.floor(Math.random()*(max-min))+min;
+
+}
+
+function createHeart(){
+
+if(!gameRunning)return;
+
+const h=document.createElement("div");
+
+h.className="gameHeart";
+
+const emojis=[
+"❤️",
+"💖",
+"💕",
+"💗",
+"💓",
+"💞"
+];
+
+h.innerHTML=emojis[random(0,emojis.length)];
+
+h.style.left=random(10,heartArea.clientWidth-60)+"px";
+
+h.style.top=random(10,heartArea.clientHeight-60)+"px";
+
+h.style.fontSize=random(28,60)+"px";
+
+heartArea.appendChild(h);
+
+let removed=false;
+
+const removeHeart=()=>{
+
+if(removed)return;
+
+removed=true;
+
+h.remove();
+
+};
+
+const timeout=setTimeout(removeHeart,1500);
+
+h.onclick=()=>{
+
+if(!gameRunning)return;
+
+score++;
+
+heartScore.innerHTML=score;
+
+clearTimeout(timeout);
+
+removeHeart();
+
+for(let i=0;i<8;i++){
+
+const s=document.createElement("div");
+
+s.innerHTML="✨";
+
+s.style.position="absolute";
+
+s.style.left=h.style.left;
+
+s.style.top=h.style.top;
+
+s.style.pointerEvents="none";
+
+s.style.fontSize=random(15,25)+"px";
+
+s.style.transition=".8s";
+
+heartArea.appendChild(s);
+
+setTimeout(()=>{
+
+s.style.transform=
+
+`translate(${random(-80,80)}px,${random(-80,80)}px)
+scale(0)`;
+
+s.style.opacity="0";
+
+},20);
+
+setTimeout(()=>s.remove(),900);
+
+}
+
+};
+
+}
+
+function startGame(){
+
+if(gameRunning)return;
+
+gameRunning=true;
+
+score=0;
+
+timeLeft=30;
+
+heartScore.innerHTML=0;
+
+heartTime.innerHTML=30;
+
+heartArea.innerHTML="";
+
+spawnInterval=setInterval(()=>{
+
+createHeart();
+
+},500);
+
+timerInterval=setInterval(()=>{
+
+timeLeft--;
+
+heartTime.innerHTML=timeLeft;
+
+if(timeLeft<=0){
+
+clearInterval(spawnInterval);
+
+clearInterval(timerInterval);
+
+gameRunning=false;
+
+heartArea.innerHTML="";
+
+const end=document.createElement("div");
+
+end.style.padding="40px";
+
+end.style.textAlign="center";
+
+let medal="😊";
+
+if(score>=25){
+
+medal="🏆";
+
+}else if(score>=18){
+
+medal="🥇";
+
+}else if(score>=12){
+
+medal="🥈";
+
+}else if(score>=6){
+
+medal="🥉";
+
+}
+
+end.innerHTML=`
+
+<h2>
+
+Game Over!
+
+</h2>
+
+<br>
+
+<h2>
+
+${medal}
+
+</h2>
+
+<br>
+
+<h2>
+
+Your Score
+
+${score}
+
+</h2>
+
+<br>
+
+<button
+class="magic"
+id="playAgainHeart">
+
+Play Again
+
+</button>
+
+`;
+
+heartArea.appendChild(end);
+
+document
+.getElementById("playAgainHeart")
+.onclick=startGame;
+
+}
+
+},1000);
+
+}
+
+startHeartGame.onclick=startGame;
+
+}
