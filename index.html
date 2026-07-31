@@ -211,7 +211,405 @@ Made with ❤️ by
 for
 
 <b>Bubu</b>
+<!-- ===================== MINI GAMES HUB ===================== -->
+<!-- Paste this ABOVE </footer> -->
 
+<section id="gamesHub" class="card">
+
+<h2>🎮 Mini Games Hub 🎮</h2>
+
+<p>
+Play different mini games made specially for Bubu ❤️
+</p>
+
+</section>
+
+<!-- Lucky Wheel -->
+
+<section id="wheelGame" class="card" style="display:none;">
+
+<h2>🎡 Lucky Wheel</h2>
+
+<canvas id="wheelCanvas" width="340" height="340"></canvas>
+
+<br><br>
+
+<button class="magic" id="spinWheelBtn">
+
+🎡 Spin Wheel
+
+</button>
+
+<h3 id="wheelResult"></h3>
+
+</section>
+
+<!-- Snake -->
+
+<section id="snakeGame" class="card" style="display:none;">
+
+<h2>🐍 Snake Game</h2>
+
+<canvas id="snakeCanvas" width="400" height="400"></canvas>
+
+<br>
+
+<button class="magic" id="snakeStart">
+
+▶ Start Snake
+
+</button>
+
+<h3>
+
+Score :
+<span id="snakeScore">
+
+0
+
+</span>
+
+</h3>
+
+</section>
+
+<!-- Tic Tac Toe -->
+
+<section id="ticGame" class="card" style="display:none;">
+
+<h2>⭕ Tic Tac Toe</h2>
+
+<div id="ticBoard"></div>
+
+<h3 id="ticStatus">
+
+Player X Turn
+
+</h3>
+
+<button class="magic" id="ticRestart">
+
+Restart
+
+</button>
+
+</section>
+
+<!-- Memory Game -->
+
+<section id="memoryGame" class="card" style="display:none;">
+
+<h2>🧠 Memory Match</h2>
+
+<div id="memoryGrid"></div>
+
+<h3>
+
+Moves :
+<span id="memoryMoves">
+
+0
+
+</span>
+
+</h3>
+
+<button class="magic" id="memoryRestart">
+
+Restart
+
+</button>
+
+</section>
+
+<!-- Reaction -->
+
+<section id="reactionGame" class="card" style="display:none;">
+
+<h2>⚡ Reaction Test</h2>
+
+<div id="reactionBox">
+
+WAIT...
+
+</div>
+
+<h3 id="reactionResult"></h3>
+
+<button class="magic" id="reactionStart">
+
+Start
+
+</button>
+
+</section>
+
+<!-- Click Speed -->
+
+<section id="clickGame" class="card" style="display:none;">
+
+<h2>🎯 Speed Click</h2>
+
+<button class="magic" id="clickStart">
+
+Start
+
+</button>
+
+<h3>
+
+Time :
+
+<span id="clickTime">
+
+10
+
+</span>
+
+</h3>
+
+<h3>
+
+Score :
+
+<span id="clickScore">
+
+0
+
+</span>
+
+</h3>
+
+<div id="clickArea"></div>
+
+</section>
+
+<!-- Guess -->
+
+<section id="guessGame" class="card" style="display:none;">
+
+<h2>🔢 Guess Number</h2>
+
+<input
+id="guessInput"
+type="number"
+placeholder="1-100">
+
+<button
+class="magic"
+id="guessBtn2">
+
+Guess
+
+</button>
+
+<h3 id="guessResult"></h3>
+
+</section>
+
+<!-- Rock Paper -->
+
+<section id="rockGame" class="card" style="display:none;">
+
+<h2>✊ Rock Paper Scissors</h2>
+
+<div>
+
+<button class="magic choose">
+
+✊
+
+</button>
+
+<button class="magic choose">
+
+✋
+
+</button>
+
+<button class="magic choose">
+
+✌️
+
+</button>
+
+</div>
+
+<h3 id="rockResult"></h3>
+
+</section>
+
+<!-- Dice -->
+
+<section id="diceGame" class="card" style="display:none;">
+
+<h2>🎲 Dice Roll</h2>
+
+<h1 id="diceFace">
+
+🎲
+
+</h1>
+
+<button class="magic" id="rollDice">
+
+Roll Dice
+
+</button>
+
+</section>
+
+<!-- Coin -->
+
+<section id="coinGame" class="card" style="display:none;">
+
+<h2>🪙 Coin Flip</h2>
+
+<h1 id="coinFace">
+
+🙂
+
+</h1>
+
+<button class="magic" id="flipCoin">
+
+Flip Coin
+
+</button>
+
+</section>
+
+<!-- Fortune -->
+
+<section id="fortuneGame" class="card" style="display:none;">
+
+<h2>🔮 Fortune</h2>
+
+<p id="fortuneText">
+
+Press the button
+
+</p>
+
+<button class="magic" id="fortuneBtn2">
+
+Reveal
+
+</button>
+
+</section>
+
+<!-- Quiz -->
+
+<section id="quizGame" class="card" style="display:none;">
+
+<h2>❓ Friendship Quiz</h2>
+
+<p id="quizQuestion">
+
+Coming Soon...
+
+</p>
+
+<button class="magic" id="quizNext">
+
+Next
+
+</button>
+
+</section>
+
+<!-- Treasure -->
+
+<section id="treasureGame" class="card" style="display:none;">
+
+<h2>💎 Treasure Hunt</h2>
+
+<div id="treasureArea"></div>
+
+<h3>
+
+Score :
+
+<span id="treasureScore">
+
+0
+
+</span>
+
+</h3>
+
+</section>
+
+<!-- Cat -->
+
+<section id="catGame" class="card" style="display:none;">
+
+<h2>🐱 Find The Cat</h2>
+
+<div id="catArea"></div>
+
+<h3 id="catResult"></h3>
+
+</section>
+
+<!-- Maze -->
+
+<section id="mazeGame" class="card" style="display:none;">
+
+<h2>🧩 Mini Maze</h2>
+
+<canvas id="mazeCanvas" width="420" height="420"></canvas>
+
+</section>
+
+<!-- Bounce Ball -->
+
+<section id="ballGame" class="card" style="display:none;">
+
+<h2>⚽ Bounce Ball</h2>
+
+<canvas id="ballCanvas" width="420" height="420"></canvas>
+
+</section>
+
+<!-- Color Match -->
+
+<section id="colorGame" class="card" style="display:none;">
+
+<h2>🌈 Color Match</h2>
+
+<div id="colorGrid"></div>
+
+<h3 id="colorScore">
+
+0
+
+</h3>
+
+</section>
+
+<!-- Aim Trainer -->
+
+<section id="aimGame" class="card" style="display:none;">
+
+<h2>🎯 Aim Trainer</h2>
+
+<div id="aimArea"></div>
+
+<h3>
+
+Hits :
+
+<span id="aimHits">
+
+0
+
+</span>
+
+</h3>
+
+</section>
 </footer>
 
 </div>
