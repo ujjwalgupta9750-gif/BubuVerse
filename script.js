@@ -520,3 +520,33 @@ addMessage(quotes[Math.floor(Math.random()*quotes.length)]);
 }
 
 },10000);
+window.addEventListener("load", () => {
+
+    const complimentBtn = document.getElementById("complimentBtn");
+    const complimentText = document.getElementById("complimentText");
+
+    if (complimentBtn && complimentText) {
+
+        complimentBtn.onclick = () => {
+
+            const compliments = [
+                "You're stronger than you think. 💖",
+                "Your smile deserves to stay forever. 🌸",
+                "You're genuinely a wonderful person. ✨",
+                "Never underestimate yourself. 🌈",
+                "You make people's lives brighter. 🌙",
+                "You deserve every happiness. ❤️",
+                "Stay exactly the way you are. 🌸",
+                "The world is better with you in it. 💕",
+                "Never stop smiling. 😊",
+                "You're one of a kind. ✨"
+            ];
+
+            complimentText.innerHTML =
+                compliments[Math.floor(Math.random() * compliments.length)];
+
+        };
+
+    }
+
+});
