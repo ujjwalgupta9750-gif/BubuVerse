@@ -203,3 +203,118 @@ surpriseBtn.onclick=()=>{
     "linear-gradient(135deg,#ff5ea8,#6c63ff,#0f172a)";
 
 }
+/* ========= PART 2 : ADD THIS AT THE END OF script.js ========= */
+
+document.getElementById("title").classList.add("glow");
+
+const quotes=[
+
+"🌸 A smile from Bubu can brighten any day.",
+"💖 Friendship is the best gift.",
+"✨ Some people become memories, some become home.",
+"🌈 You are appreciated more than you know.",
+"🌙 Every star tonight celebrates this friendship.",
+"🦋 Stay happy, stay crazy, stay YOU.",
+"🌹 Thank you for being here.",
+"🎀 You deserve endless happiness.",
+"❤️ The universe is prettier with you in it."
+
+];
+
+setInterval(()=>{
+
+addMessage(quotes[Math.floor(Math.random()*quotes.length)]);
+
+},15000);
+
+document.addEventListener("mousemove",(e)=>{
+
+if(Math.random()>.55)return;
+
+const s=document.createElement("div");
+
+s.className="sparkle";
+
+s.style.left=e.clientX+"px";
+
+s.style.top=e.clientY+"px";
+
+document.body.appendChild(s);
+
+setTimeout(()=>s.remove(),2000);
+
+});
+
+function rainEmoji(emoji,count){
+
+for(let i=0;i<count;i++){
+
+const x=document.createElement("div");
+
+x.className="heart";
+
+x.innerHTML=emoji;
+
+x.style.left=Math.random()*100+"vw";
+
+x.style.fontSize=(18+Math.random()*30)+"px";
+
+x.style.animationDuration=(3+Math.random()*5)+"s";
+
+document.body.appendChild(x);
+
+setTimeout(()=>x.remove(),7000);
+
+}
+
+}
+
+heartBtn.addEventListener("dblclick",()=>{
+
+rainEmoji("💖",100);
+
+addMessage("💞 Double Love Mode Activated!");
+
+});
+
+starsBtn.addEventListener("dblclick",()=>{
+
+rainEmoji("⭐",120);
+
+addMessage("🌌 The whole sky is shining for Bubu.");
+
+});
+
+fireworkBtn.addEventListener("dblclick",()=>{
+
+rainEmoji("🎆",80);
+
+rainEmoji("✨",120);
+
+addMessage("🎇 Celebration Mode Activated!");
+
+});
+
+let clicks=0;
+
+document.body.addEventListener("click",()=>{
+
+clicks++;
+
+if(clicks===50){
+
+addMessage("🥳 Secret Achievement Unlocked!");
+}
+
+if(clicks===100){
+
+addMessage("👑 Ultimate Explorer Achievement!");
+}
+
+});
+
+console.log("%cWelcome Bubu ❤️",
+"font-size:30px;color:pink;font-weight:bold;");
+
+console.log("%cMade with love by Pgl / Buddhu ❤️",
+"font-size:18px;color:cyan;");
